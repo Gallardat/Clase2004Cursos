@@ -1,0 +1,23 @@
+<div>
+<table border="3" style="border-color: blue;">
+  ID CURSO
+  <label>
+   <input type="number" name="nombre" [(ngModel)]="nuevoId"required>
+ </label><br><br>
+ NOMBRE DEL CURSO
+ <label>
+  <input type="text" name="totalfactura" [(ngModel)]="nuevoNombre"required>
+</label><br><br>
+<label>
+ DURACION
+  <input type="number" name="iva" [(ngModel)]="nuevaDuracion"required>
+</label><br><br>
+<label>
+  NIVEL
+<select [(ngModel)]="nuevoNivel">
+    <option *ngFor="let t of nivelp" [value]="t">{{t}}</option>
+</select>
+ </label><br><br>
+ <button (click)="confirmarModificacion() ">CONFIRMAR</button>
+</table>
+</div>

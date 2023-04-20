@@ -1,0 +1,21 @@
+<h1 style="color:blue">LISTA DE CURSOS</h1>
+<table border="1" style="background-color: aqua;" >
+  <thead>
+    <tr>
+      <th>ID CURSO</th>
+      <th>NOMBRE</th>
+      <th>DURACIÓN</th>
+      <th>NIVEL</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let datos of curs ">
+    <td>{{datos.idCurso}}</td>
+    <td>{{datos.nombre}}</td>
+    <td>{{datos.duracion}}</td>
+    <td>{{datos.nivel}}</td>
+    <td><button [routerLink]="['/modificar',datos.idCurso]" [queryParams]="{accion:'1'}" >modificar</button></td>
+  </tr>
+  </tbody>
+  </table>
+  <br>
