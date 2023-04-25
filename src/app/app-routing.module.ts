@@ -4,8 +4,14 @@ import { ListaCursoComponent } from './lista-curso/lista-curso.component';
 import { ModificarComponent } from './modificar/modificar.component';
 
 const routes: Routes = [
-  {path:"",component:ListaCursoComponent},
-  {path:"modificar/:id", component:ModificarComponent}];
+ { path:"",component:ListaCursoComponent,children:
+    [
+
+      {path:"alta", component:ModificarComponent},
+      {path:"modificar/:id", component:ModificarComponent}
+    ]
+  }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

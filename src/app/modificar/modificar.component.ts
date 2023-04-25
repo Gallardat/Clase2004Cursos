@@ -9,25 +9,50 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 })
 export class ModificarComponent {
 
-  nuevoId:number;
-  nuevoNombre: string;
-  nuevaDuracion:number;
+  nuevoId:number=0;
+  nuevoNombre: string="";
+  nuevaDuracion:number=0;
   nuevoNivel: Nivel;
-  acc: number=0
+//el data representa todo el flojo de datos de params
   constructor(private ruta: Router, private activarRuta: ActivatedRoute,private miServicio: CursoServicioService){
-    this.nuevoId=this.activarRuta.snapshot.params["id"]
-    this.nuevoNombre=""
-    this.nuevaDuracion=0
-    this.nuevoNivel=Nivel.avanzado
-    this.curs=this.miServicio.curso
-    this.acc=parseInt(this.activarRuta.snapshot.queryParams['id'])
-  }
+    this.activarRuta.params.subscribe(data => {
+    this.nuevoId = data['id'];
+    let cursoN=this.miServicio.encontrarCurso(this.nuevoId)
+    if(cursoN!=undefined)
+    {
+      this.nuevoNombre = cursoN.nombre;
+     this.nuevaDuracion = cursoN.duracion
 
+    }
+    // this.nuevoNombre = data['nombre'];
+    // this.nuevaDuracion = data['duracion']
+  })
+
+  }
     curs: Curso[]=[]
     nivelp=Object.values(Nivel)
 
   confirmarModificacion(){
-    this.miServicio.modificarServicio(this.nuevoId,this.nuevoNombre,this.nuevaDuracion,this.nuevoNivel)
-    this.ruta.navigate([""])
+    if(this.nuevoId==undefined)
+    {
+      let nuevoCurso= new Curso(this.nuevoId,this.nuevoNombre,this.nuevaDuracion,this.nuevoNivel)
+      this.miServicio.altaServicio(nuevoCurso)
+      this.ruta.navigate([""])
+    }
+    else
+    {
+      this.miServicio.modificarServicio(this.nuevoId,this.nuevoNombre,this.nuevaDuracion,this.nuevoNivel)
+      this.ruta.navigate([""])
+    }
   }
+
+
 }
+// this.nuevoId=this.activarRuta.snapshot.queryParams["id"]
+    // this.nuevoNombre=this.activarRuta.snapshot.queryParams["nombre"]
+    // this.nuevaDuracion=this.activarRuta.snapshot.queryParams["duracion"]
+    // this.nuevoNivel=Nivel.avanzado
+    // this.curs=this.miServicio.curso
+    //para diferentes cantidad de parametros
+    // this.acc=parseInt(this.activarRuta.snapshot.queryParams['accion'])
+  //this.curs=this.miServicio.curso

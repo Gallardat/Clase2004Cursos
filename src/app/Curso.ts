@@ -4,12 +4,14 @@ export class Curso
   nombre: string;
   duracion:number;
   nivel: Nivel;
+  static contador=0
 
   constructor(idCurso: number,nombre:string,duracion:number,nivel:Nivel){
-    this.idCurso=idCurso
+    this.idCurso=++Curso.contador
     this.nombre=nombre
     this.duracion=duracion
     this.nivel=nivel
+
 
   }
 }

@@ -14,11 +14,16 @@ constructor(private ruta: Router, private activarRuta:ActivatedRoute,private miS
 }
 ngOnInit()
 {
-  this.activarRuta.snapshot.params["id"]
+  //this.activarRuta.snapshot.params["id"]
   this.curs=this.miServicio.curso
-
 }
 curs:Curso[]=[]
 
+eliminar(id:number)
+{
 
+    this.miServicio.eliminarServicio(id)
+    this.miServicio.mostrar
+
+}
 }

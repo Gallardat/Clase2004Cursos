@@ -27,4 +27,21 @@ modificarServicio(idM:number,nombreM:string,duracionM:number,nivelM:Nivel)
     }
   }
 }
+altaServicio(cursoN: Curso){
+
+this.curso.push(cursoN)
+}
+
+encontrarCurso(id:number){
+  return this.curso.find((curss)=>curss.idCurso==id)
+}
+eliminarServicio(id:number)
+  {
+    this.curso=this.curso.filter(curso=>curso.idCurso!= id)
+  }
+
+  mostrar()
+  {
+    return this.curso
+  }
 }
